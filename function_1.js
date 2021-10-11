@@ -3,8 +3,10 @@ Date.prototype.addDays = function(days) {
     return this;
 };
 
+
+
 //global
-let date_display_format = "MM-DD-YYYY";
+let date_display_format = "DD-MM-YYYY";
 let global_fortnightly_payments = 26;
 let global_monthly_payments = 12;
 let global_interst_rate = 8.5;
@@ -23,6 +25,8 @@ let o_daily_dd_amount = $('#o_daily_dd_amount');
 let o_total_amount = $('#o_total_amount');
 
 $(document).ready(function(){
+
+    moment.lang('en-AU');
 
     document.getElementById("loan-form").addEventListener("submit", function(e) {
         // Hide Results
@@ -43,8 +47,8 @@ function calculateResults() {
     //input variables
     let i_policy_amount = parseFloat($('#i_policy_amount').val());
     let i_frequency = $('#i_frequency');
-    let policy_start_date = moment($('#i_policy_start_date').val());
-    let i_payment_start_date = moment($('#i_payment_start_date').val());
+    let policy_start_date = moment($('#i_policy_start_date').val(), date_display_format);
+    let i_payment_start_date = moment($('#i_payment_start_date').val(), date_display_format);
 
     //shared variables
     let o_2nd_dd_date_value;
