@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- Code By Webdevtrick ( https://webdevtrick.com )-->
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>JS Loan Calculator | Webdevtrick.com</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto calculate-form">
+          <div class="card card-body text-center mt-5">
+            <h1 class="heading display-5 pb-3">Blanket Loan Calculator</h1>
+            <form id="loan-form">
+              <div class="form-group">
+                <label for="i_policy_start_date">mm/dd/yyyy</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="i_policy_start_date" placeholder="Policy Start Date" value="01/01/2021" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="i_payment_start_date" placeholder="Payment Start Date" value="01/01/2021" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="number" class="form-control" id="i_policy_amount" placeholder="Policy Amount" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="i_frequency">Frequency</label>
+                <select class="form-control" id="i_frequency">
+                  <option value="fortnightly">Fortnightly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input
+                  type="submit"
+                  value="Calculate"
+                  class="btn btn-dark btn-block"
+                />
+              </div>
+            </form>
+            <!-- Loader -->
+            <div id="loading">
+              <img src="https://media.giphy.com/media/swhRkVYLJDrCE/giphy.gif" alt="loading"/>
+            </div>
+            <!-- Result -->
+            <div id="result">
+              <h5>Results</h5>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">End Date</span>
+                  </div>
+                  <input type="text" class="form-control" id="o_end_date" disabled />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Annual Cost</span>
+                  </div>
+                  <input type="number" class="form-control" id="o_annual_cost" disabled />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">2nd DD Date</span>
+                  </div>
+                  <input type="text" class="form-control" id="o_2nd_dd_date" disabled />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Last DD date</span>
+                  </div>
+                  <input type="text" class="form-control" id="o_last_dd_date" disabled />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">No. Payments</span>
+                  </div>
+                  <input type="text" class="form-control" id="o_no_of_payments" disabled />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">First payment</span>
+                  </div>
+                  <input type="text" class="form-control" id="o_first_payment" disabled />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Last Payment</span>
+                  </div>
+                  <input type="text" class="form-control" id="o_last_payment" disabled />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Regular DD amount</span>
+                  </div>
+                  <input type="text" class="form-control" id="o_regular_dd_amount" disabled />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Daily DD Amount</span>
+                  </div>
+                  <input type="text" class="form-control" id="o_daily_dd_amount" disabled />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Total Amount</span>
+                  </div>
+                  <input type="text" class="form-control" id="o_total_amount" disabled />
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script  src="function_1.js"></script>
+
+</body>
+</html>
