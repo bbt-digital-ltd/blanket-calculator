@@ -63,7 +63,6 @@ function calculateResults() {
     //Step 1
     // Calculate end date
     let o_end_date_val = policy_start_date.clone().add(364, 'days');
-    console.log('o_end_date_val', o_end_date_val.format());
     o_end_date.val(o_end_date_val.format(date_display_format));
 
     //Calculate no of payments
@@ -76,9 +75,6 @@ function calculateResults() {
         // ),
 
         let policy_start_date_end_of_month = policy_start_date.clone().subtract(1, 'month').endOf('month');
-
-        console.log('i_payment_start_date', i_payment_start_date.format());
-        console.log('policy_start_date_end_of_month', policy_start_date_end_of_month.clone().add(14, 'days').format("MM-DD-YYYY"));
         
         //F13<Eomonth(C13,-1)+14
         if( i_payment_start_date.format("MM-DD-YYYY") < policy_start_date_end_of_month.add(14, 'days').format("MM-DD-YYYY") ){
@@ -86,19 +82,15 @@ function calculateResults() {
             number_of_payments = global_fortnightly_payments;
             o_no_of_payments.val(global_fortnightly_payments);
 
-
         } else {
             //ROUNDUP(MIN(index($C$2:$C$3,match(E13,$B$2:$B$3,0)),DATEDIF(F13-1,G13,"D")/14),0)
 
             //DATEDIF(F13-1,G13,"D")
             let f_1 = o_end_date_val.diff(i_payment_start_date.clone().subtract(1, 'day').format("MM-DD-YYYY"), 'days');
-            console.log('different between end date and 1st payment date', f_1);
 
             let f_2 = Math.ceil(Math.min.apply(Math, [ global_fortnightly_payments, f_1/14]));
-            console.log('no of payments f_2', f_2 );
             number_of_payments = f_2;
             o_no_of_payments.val(f_2);
-
         }
 
     } else {
@@ -109,28 +101,18 @@ function calculateResults() {
         // )
 
         let policy_start_date_end_of_month = policy_start_date.clone().endOf('month');
-        console.log('policy_start_date_end_of_month', policy_start_date_end_of_month.format());
-
-        console.log('i_payment_start_date', i_payment_start_date.format());
 
         if( i_payment_start_date.format("MM-DD-YYYY") < policy_start_date_end_of_month.format("MM-DD-YYYY") ){
-
-            console.log('here');
 
             number_of_payments = global_monthly_payments;
             o_no_of_payments.val(global_monthly_payments);
 
         } else {
 
-
-            console.log('o_end_date_val', o_end_date_val);
             //DATEDIF(F13-1,G13,"M")
-            console.log('test', i_payment_start_date.subtract(1, 'day').format("MM-DD-YYYY"));
             let f_3 = Math.abs(o_end_date_val.diff(i_payment_start_date.subtract(1, 'day').format("MM-DD-YYYY"), 'months'));
-            console.log('different between end date and 1st payment date months', f_3);
 
             let f_4 = Math.ceil(Math.min.apply(Math, [ global_monthly_payments, f_3]));
-            console.log('no of payments f_4', f_4 );
             number_of_payments = f_4;
             o_no_of_payments.val(f_4);
 
@@ -142,7 +124,6 @@ function calculateResults() {
 
     //Step 2 - Calculate Annual Cost
     //=(D9*(1+$C$4)+index($C$2:$C$3,match(E9,$B$2:$B$3,0))+$C$5)
-    
     annual_cost_val = parseFloat(i_policy_amount * (1 + (global_interst_rate/100)) + days + global_setup_fee);
     o_annual_cost.val(annual_cost_val);
 
@@ -174,17 +155,11 @@ function calculateResults() {
 
     //Step 6 - Calculate First Payment
     //=if(F9<C9,(H9-$C$5)/index($C$2:$C$3,match(E9,$B$2:$B$3,0))+$C$5,(I9-C9)*O9+$C$5)
-    console.log('i_payment_start_date', i_payment_start_date.format());
-    console.log('policy_start_date', policy_start_date.format());
-    console.log( i_payment_start_date < policy_start_date );
     if( i_payment_start_date < policy_start_date ){
-        console.log('here1');
         o_first_payment_value = parseFloat((((annual_cost_val - global_setup_fee) / days) + global_setup_fee).toFixed(2));
         o_first_payment.val(o_first_payment_value);
     } else {
-        console.log('here2');
         let diff = Math.abs(o_2nd_dd_date_value.diff(policy_start_date, 'days'));
-        console.log('diff', diff);
         o_first_payment_value = parseFloat(((diff * daily_dd_amount_value) + global_setup_fee).toFixed(2));
         o_first_payment.val(o_first_payment_value);
     }
@@ -206,16 +181,5 @@ function calculateResults() {
   
     // Hide Loader
     document.getElementById("loading").style.display = "none";
-
-}
-
-
-function calculateNoOfPayments() {
-
-    // Input Fields
-    
-    
-
-    
 
 }
