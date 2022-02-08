@@ -6,15 +6,16 @@ body {
     height: 100vh;
     position: relative;
   }
-  .calculate-form {
+  /* .calculate-form {
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -40%);
-  }
+  } */
   #loading,
   #result {
     display: none;
+    text-align: left!important;
   }
   @media (max-width: 750px) {
     #loading img {

@@ -49,6 +49,29 @@ function calculateResults() {
     let i_frequency = $('#i_frequency');
     let policy_start_date = moment($('#i_policy_start_date').val(), date_display_format);
     let i_payment_start_date = moment($('#i_payment_start_date').val(), date_display_format);
+    let i_policy_issue_date = moment($('#i_policy_issue_date').val(), date_display_format)
+
+    let postData = {
+        PolicyAmount: i_policy_amount,
+        Frequency: i_frequency.val(),
+        PolicyIssueDate: i_policy_issue_date.format(date_display_format),
+        PaymentStartDate: i_payment_start_date.format(date_display_format),
+        PolicyStartDate: policy_start_date.format(date_display_format),
+        AccessKey: "24224346-4f0f-4932-960b-dd1d70c3e996"
+    }
+
+    $.ajax({
+        type: "POST",
+        url: 'https://api-dev.premiumfunding.nz/nzfs/calculate/premium/private',
+        dataType: 'json',
+        async: false,
+        data: JSON.stringify(postData),
+        success: function(response){
+            console.log(response)
+            $('#result_p').text(JSON.stringify(response, null, '\t'))
+        }
+
+    })
 
     //shared variables
     let o_2nd_dd_date_value;

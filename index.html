@@ -17,14 +17,21 @@
             <h1 class="heading display-5 pb-3">Blanket Loan Calculator</h1>
             <form id="loan-form">
               <div class="form-group">
-                <label for="i_policy_start_date">dd/mm/yyyy</label>
+                <label>Policy Start Date</label>
                 <div class="input-group">
                   <input type="text" class="form-control" id="i_policy_start_date" placeholder="Policy Start Date" value="01/01/2021" />
                 </div>
               </div>
               <div class="form-group">
-                <div class="input-group">
+                <label>Payment Start Date</label>
+                <div class="input-group">       
                   <input type="text" class="form-control" id="i_payment_start_date" placeholder="Payment Start Date" value="01/01/2021" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Policy Issue Date</label>
+                <div class="input-group">       
+                  <input type="text" class="form-control" id="i_policy_issue_date" placeholder="Policy Issue Date" value="01/01/2021" />
                 </div>
               </div>
               <div class="form-group">
@@ -55,7 +62,7 @@
               <img src="https://media.giphy.com/media/swhRkVYLJDrCE/giphy.gif" alt="loading"/>
             </div>
             <!-- Result -->
-            <div id="result">
+            <!-- <div id="result">
               <h5>Results</h5>
               <div class="form-group">
                 <div class="input-group">
@@ -137,15 +144,22 @@
                   <input type="text" class="form-control" id="o_total_amount" disabled />
                 </div>
               </div>
+            </div> -->
+          </div>
+          </div>
+          <div class="col-md-6">
+            <div id="result">
+              <h5>Results</h5>
+              <pre id="result_p"></pre>
             </div>
           </div>
-          </div>
         </div>
+        
       </div>
     </div>
 
   </body>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
