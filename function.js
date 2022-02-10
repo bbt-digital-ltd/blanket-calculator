@@ -69,6 +69,9 @@ function calculateResults() {
         success: function(response){
             console.log(response)
             $('#result_p').text(JSON.stringify(response, null, '\t'))
+        },
+        error: function(response){
+            $('#result_p').text(JSON.stringify(response.responseJSON, null, '\t'))
         }
 
     })
