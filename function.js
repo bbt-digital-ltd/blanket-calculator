@@ -50,6 +50,7 @@ function calculateResults() {
     let policy_start_date = moment($('#i_policy_start_date').val(), date_display_format);
     let i_payment_start_date = moment($('#i_payment_start_date').val(), date_display_format);
     let i_policy_issue_date = moment($('#i_policy_issue_date').val(), date_display_format)
+    let i_policy_end_date = moment($('#i_policy_end_date').val(), date_display_format)
 
     let postData = {
         PolicyAmount: i_policy_amount,
@@ -57,7 +58,8 @@ function calculateResults() {
         PolicyIssueDate: i_policy_issue_date.format(date_display_format),
         PaymentStartDate: i_payment_start_date.format(date_display_format),
         PolicyStartDate: policy_start_date.format(date_display_format),
-        AccessKey: "24224346-4f0f-4932-960b-dd1d70c3e996"
+        AccessKey: "24224346-4f0f-4932-960b-dd1d70c3e996",
+        PolicyEndDate: i_policy_end_date.format(date_display_format)
     }
 
     $.ajax({
