@@ -70,7 +70,22 @@ function calculateResults() {
         data: JSON.stringify(postData),
         success: function(response){
             console.log(response)
-            $('#result_p').text(JSON.stringify(response, null, '\t'))
+            let displayResult = {
+                "Total Amount Payable": response.TotalAmountPayable,
+                "Interest Cost": response.InterestCharges,
+                "Last DD Date": response.RegularInstalmentLastDate,
+                "No. Reg Installments": response.NumberOfPayments,
+                "First Payment Amount": response.FirstInstalment,
+                "Deposit Amount": response.DepositAmount,
+                "Regular DD Amount": response.RegularInstalment,
+                "Interest Rate": response.AnnualInterestRate
+
+            };
+            for(const key in displayResult){
+                $('#result_p').append(`<p>${key}: ${displayResult[key]}</p>`);
+            }
+           
+            ///$('#result_p').text("<p>TotalAmountPayable: </p>")
         },
         error: function(response){
             $('#result_p').text(JSON.stringify(response.responseJSON, null, '\t'))
