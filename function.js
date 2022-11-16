@@ -30,6 +30,7 @@ $(document).ready(function(){
 
     document.getElementById("loan-form").addEventListener("submit", function(e) {
         // Hide Results
+        document.getElementById("result_p").innerHTML = "";
         document.getElementById("result").style.display = "none";
       
         // Show Loader
